@@ -11,7 +11,7 @@ mod_c2 = modulo_complexos(c2.real,c2.imag)
 mod_c1_c2 = modulo_complexos((c1*c2).real, (c1*c2).imag)
 mod_c1_mais_c2 = modulo_complexos((c1+c2).real, (c1+c2).imag)
 
-if(mod_c1*mod_c2 == mod_c1_c2):
+if(round(mod_c1*mod_c2,3) == round(mod_c1_c2,3)):
     print("O produto dos módulos e o módulo dos produtos")
 if(mod_c1_mais_c2 <= mod_c1 + mod_c2):
     print("A desigualdade triangular foi obedecida")
