@@ -1,13 +1,24 @@
-import numpy as np
-n_linhas1 = int(input("Digite o número de linhas da primeira matriz: "))
-n_colunas1 = int(input("Digite o número de colunas da primeira matriz: "))
-n_linhas2 = int(input("Digite o número de linhas da segunda matriz: "))
-n_colunas2 = int(input("Digite o número de colunas da segunda matriz: "))
+def traco(matriz):
+    linhas = len(matriz)
+    if (matriz == [] or len(matriz) != len(matriz[0])):
+        return 0
+    else:
+        elemento = 0
+        for i in range(linhas):
+            elemento += matriz[i][i]
+        return elemento
 
-matriz1 = np.array([[complex(input(f"Digite o elemento ({i+1},{j+1}) da primeira matriz (formato a+bj): ")) for j in range(n_colunas1)] for i in range(n_linhas1)])
-matriz2 = np.array([[complex(input(f"Digite o elemento ({i+1},{j+1}) da segunda matriz (formato a+bj): ")) for j in range(n_colunas2)] for i in range(n_linhas2)])
+linhas = int(input("Digite o número de linhas da matriz: "))
+colunas = int(input("Digite o número de colunas da matriz: "))
 
-resultado = np.vdot(matriz1, matriz2)
+matriz_1 = []
 
-print("\nProduto Interno:")
-print(resultado)
+print("Digite os elementos da linha")
+for i in range (linhas):
+    linha = []
+    for j in range (colunas):
+        elemento = int(input(f"Insira o elemento [{i+1}][{j+1}]: "))
+        linha.append(elemento)
+    matriz_1.append(linha)
+    
+print(f"O traço será: {traco(matriz_1)}")
