@@ -1,13 +1,62 @@
-import numpy as np
-def verificar_hermitiana(matriz):
-    return np.allclose(matriz, matriz.conj().T)
-n_linhas = int(input("Digite o número de linhas da matriz: "))
-n_colunas = int(input("Digite o número de colunas da matriz: "))
-matriz = np.array([[complex(input(f"Digite o elemento ({i+1},{j+1}) da matriz (formato a+bj): ")) for j in range(n_colunas)] for i in range(n_linhas)])
-if matriz.shape[0] != matriz.shape[1]:
-    print("A matriz não é quadrada e, portanto, não pode ser Hermitiana.")
+def comparar_matrizes(matriz1, matriz2):
+    if len(matriz1) != len(matriz2) or len(matriz1[0]) != len(matriz2[0]):
+        return False
+
+    for i in range(len(matriz1)):
+        for j in range(len(matriz1[0])):
+            if matriz1[i][j] != matriz2[i][j]:
+                return False
+    
+    return True
+
+def transposta(matriz):
+    if not matriz:
+        return []
+    linhas = len(matriz)
+    colunas = len(matriz[0])
+    
+    transposta = []
+    
+    for j in range(colunas):
+        linha = []
+        for i in range(linhas):
+            elemento = matriz[i][j]
+            linha.append(elemento)
+        transposta.append(linha)
+    
+    return transposta
+
+def conjugada(matriz):
+    if not matriz:
+        return []
+    
+    linhas = len(matriz)
+    colunas = len(matriz[0])
+    
+    conjugada = []
+    
+    for i in range(linhas):
+        linha = []
+        for j in range(colunas):
+            elemento = matriz[i][j].conjugate()
+            linha.append(elemento)
+        conjugada.append(linha)
+    return conjugada    
+
+linhas = int(input("Digite o número de linhas da matriz: "))
+colunas = int(input("Digite o número de colunas da matriz: "))
+
+matriz = []
+
+print("Digite os elementos da linha")
+for i in range (linhas):
+    linha = []
+    for j in range (colunas):
+        elemento = complex(input(f"Insira o elemento [{i+1}][{j+1}]: "))
+        linha.append(elemento)
+    matriz.append(linha)
+    
+if(comparar_matrizes(conjugada(matriz),transposta(matriz))):
+    print("a matriz é hermitiana")
 else:
-    if verificar_hermitiana(matriz):
-        print("A matriz é Hermitiana.")
-    else:
-        print("A matriz não é Hermitiana.")
+    print("a matriz não é hermitiana")
